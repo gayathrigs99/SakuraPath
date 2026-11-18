@@ -1,0 +1,90 @@
+{
+  "scenario_id": "asking_break_001",
+  "name": "Asking for Break",
+  "description": "Learn how to politely request a break or rest time",
+  "level": "N4",
+  "job_type": "manufacturing",
+  "vocabulary_list": [
+    "すみません",
+    "少し",
+    "休憩",
+    "もいいですか",
+    "分",
+    "だけ",
+    "お願いします"
+  ],
+  "grammar_focus": [
+    "～てもいいですか (may I ~)",
+    "少し (a little, a short)",
+    "～だけ (only ~)"
+  ],
+  "cultural_notes": [
+    "Always ask permission for breaks, don't just take them",
+    "Specify duration when requesting breaks",
+    "Showing respect for schedule and authority is important"
+  ],
+  "scenario_tree": {
+    "nodes": [
+      {
+        "id": "node_0_checkin",
+        "turn": 1,
+        "speaker": "supervisor",
+        "text": "はい、どうしましたか？",
+        "english": "Yes, what is it?",
+        "branches": {
+          "success": "node_1_request"
+        }
+      },
+      {
+        "id": "node_1_request",
+        "turn": 2,
+        "speaker": "worker",
+        "text": "すみません、少し休憩してもいいですか？",
+        "english": "Excuse me, may I take a short break?",
+        "expected_intent": "break_request",
+        "branches": {
+          "success": "node_2_approval"
+        }
+      },
+      {
+        "id": "node_2_approval",
+        "turn": 3,
+        "speaker": "supervisor",
+        "text": "はい、5分だけお願いします。",
+        "english": "Yes, only for 5 minutes.",
+        "branches": {
+          "success": "node_3_acknowledge"
+        }
+      },
+      {
+        "id": "node_3_acknowledge",
+        "turn": 4,
+        "speaker": "worker",
+        "expected_response": "ありがとうございます。5分後に戻ります。",
+        "english": "Thank you. I'll be back in 5 minutes.",
+        "branches": {
+          "success": "node_4_return"
+        }
+      },
+      {
+        "id": "node_4_return",
+        "turn": 5,
+        "speaker": "worker",
+        "text": "ただいま戻りました。作業を続けます。",
+        "english": "I'm back. I'll continue working.",
+        "branches": {
+          "success": "node_5_complete"
+        }
+      },
+      {
+        "id": "node_5_complete",
+        "turn": 6,
+        "speaker": "supervisor",
+        "text": "お疲れ様。では、よろしくお願いします。",
+        "english": "Good job. Please continue with the work.",
+        "is_final": true
+      }
+    ]
+  },
+  "is_active": true
+}

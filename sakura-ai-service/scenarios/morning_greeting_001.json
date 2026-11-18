@@ -1,0 +1,59 @@
+
+{
+  "scenario_id": "morning_greeting_001",
+  "name": "Morning Greeting (朝礼)",
+  "description": "Learn the polite morning greeting ritual used at the start of a factory shift",
+  "level": "N5",
+  "job_type": "manufacturing",
+  "vocabulary_list": [
+    "おはよう",
+    "ございます",
+    "今日",
+    "から",
+    "よろしく",
+    "お願い"
+  ],
+  "grammar_focus": [
+    "おはようございます (formal morning greeting)",
+    "～からよろしくお願いします (from today onwards, please be kind to me)"
+  ],
+  "cultural_notes": [
+    "Morning greetings are essential workplace etiquette",
+    "Using polite language shows respect and professionalism",
+    "Exchanging greetings builds team harmony"
+  ],
+  "scenario_tree": {
+    "nodes": [
+      {
+        "id": "node_1_greeting",
+        "turn": 1,
+        "speaker": "supervisor",
+        "text": "おはようございます。今日からよろしくお願いします。",
+        "english": "Good morning. Let's work well together from today.",
+        "expected_intent": "greeting_response",
+        "branches": {
+          "success": "node_2_response"
+        }
+      },
+      {
+        "id": "node_2_response",
+        "turn": 2,
+        "speaker": "worker",
+        "expected_response": "おはようございます。よろしくお願いします。",
+        "english": "Good morning. I look forward to working with you.",
+        "branches": {
+          "success": "node_3_complete"
+        }
+      },
+      {
+        "id": "node_3_complete",
+        "turn": 3,
+        "speaker": "supervisor",
+        "text": "では、今日の作業を説明します。",
+        "english": "Then, let me explain today's work.",
+        "is_final": true
+      }
+    ]
+  },
+  "is_active": true
+}

@@ -1,0 +1,101 @@
+{
+  "scenario_id": "reporting_problem_001",
+  "name": "Reporting a Problem",
+  "description": "Learn how to report equipment issues or safety concerns appropriately",
+  "level": "N4",
+  "job_type": "manufacturing",
+  "vocabulary_list": [
+    "すみません",
+    "機械",
+    "問題",
+    "あります",
+    "どんな",
+    "動く",
+    "いません"
+  ],
+  "grammar_focus": [
+    "～に問題があります (there is a problem with ~)",
+    "どんな～ですか (what kind of ~)",
+    "～ていません (not doing, not working)"
+  ],
+  "cultural_notes": [
+    "Reporting problems promptly is a safety responsibility",
+    "Direct communication with supervisors is valued",
+    "Problems should be reported immediately, not hidden"
+  ],
+  "scenario_tree": {
+    "nodes": [
+      {
+        "id": "node_0_checkin",
+        "turn": 1,
+        "speaker": "supervisor",
+        "text": "はい、どうしましたか？",
+        "english": "Yes, what is it?",
+        "branches": {
+          "success": "node_1_alert"
+        }
+      },
+      {
+        "id": "node_1_alert",
+        "turn": 2,
+        "speaker": "worker",
+        "text": "すみません、この機械に問題があります。",
+        "english": "Excuse me, there is a problem with this machine.",
+        "expected_intent": "problem_report",
+        "branches": {
+          "success": "node_2_inquiry"
+        }
+      },
+      {
+        "id": "node_2_inquiry",
+        "turn": 3,
+        "speaker": "supervisor",
+        "text": "どんな問題ですか？",
+        "english": "What kind of problem?",
+        "branches": {
+          "success": "node_3_description"
+        }
+      },
+      {
+        "id": "node_3_description",
+        "turn": 4,
+        "speaker": "worker",
+        "expected_response": "動いていません。",
+        "english": "It is not working.",
+        "branches": {
+          "success": "node_4_detail",
+          "additional_info": "node_3a_more"
+        }
+      },
+      {
+        "id": "node_3a_more",
+        "turn": 5,
+        "speaker": "worker",
+        "expected_response": "今朝から動きません。変な音がします。",
+        "english": "It hasn't worked since this morning. It makes a strange noise.",
+        "branches": {
+          "success": "node_4_detail"
+        }
+      },
+      {
+        "id": "node_4_detail",
+        "turn": 5,
+        "speaker": "supervisor",
+        "text": "わかりました。少し待ってください。確認します。",
+        "english": "Understood. Please wait a moment. I'll check it.",
+        "branches": {
+          "success": "node_5_complete"
+        }
+      },
+      {
+        "id": "node_5_complete",
+        "turn": 6,
+        "speaker": "supervisor",
+        "text": "メンテナンスが必要です。別の機械を使ってください。",
+        "english": "Maintenance is needed. Please use another machine.",
+        "is_final": true
+      }
+    ]
+  },
+  "is_active": true
+}

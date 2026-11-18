@@ -1,0 +1,101 @@
+{
+  "scenario_id": "end_of_day_001",
+  "name": "End-of-Day Reporting",
+  "description": "Learn how to report completion of work and close out the day professionally",
+  "level": "N4",
+  "job_type": "manufacturing",
+  "vocabulary_list": [
+    "今日",
+    "作業",
+    "終わる",
+    "ました",
+    "お疲れ様",
+    "でした",
+    "報告"
+  ],
+  "grammar_focus": [
+    "～ました (past tense completion)",
+    "お疲れ様でした (thank you for your hard work)",
+    "今日の作業 (today's work)"
+  ],
+  "cultural_notes": [
+    "Proper closing greetings show professionalism and respect",
+    "Reporting completion signals readiness for dismissal",
+    "End-of-day rituals reinforce team cohesion"
+  ],
+  "scenario_tree": {
+    "nodes": [
+      {
+        "id": "node_0_checkin",
+        "turn": 1,
+        "speaker": "supervisor",
+        "text": "そろそろ終わりの時間ですね。作業はどうですか？",
+        "english": "It's almost time to finish. How's the work going?",
+        "branches": {
+          "success": "node_1_completion"
+        }
+      },
+      {
+        "id": "node_1_completion",
+        "turn": 2,
+        "speaker": "worker",
+        "text": "今日の作業が終わりました。",
+        "english": "Today's work is finished.",
+        "expected_intent": "work_completion",
+        "branches": {
+          "success": "node_2_detail",
+          "summary": "node_1a_detail"
+        }
+      },
+      {
+        "id": "node_1a_detail",
+        "turn": 3,
+        "speaker": "worker",
+        "expected_response": "100個の部品を検査して、3個の不良品を見つけました。",
+        "english": "I inspected 100 parts and found 3 defects.",
+        "branches": {
+          "success": "node_2_detail"
+        }
+      },
+      {
+        "id": "node_2_detail",
+        "turn": 3,
+        "speaker": "supervisor",
+        "text": "お疲れ様でした。良い仕事をしましたね。",
+        "english": "Good job today. You did well.",
+        "branches": {
+          "success": "node_3_thanks"
+        }
+      },
+      {
+        "id": "node_3_thanks",
+        "turn": 4,
+        "speaker": "worker",
+        "expected_response": "ありがとうございます。明日も頑張ります。",
+        "english": "Thank you. I will do my best tomorrow too.",
+        "branches": {
+          "success": "node_4_closing"
+        }
+      },
+      {
+        "id": "node_4_closing",
+        "turn": 5,
+        "speaker": "supervisor",
+        "text": "ご苦労様でした。明日もよろしくお願いします。",
+        "english": "Thank you for your hard work. Please take care tomorrow too.",
+        "branches": {
+          "success": "node_5_complete"
+        }
+      },
+      {
+        "id": "node_5_complete",
+        "turn": 6,
+        "speaker": "worker",
+        "expected_response": "こちらこそ、ありがとうございました。失礼します。",
+        "english": "Thank you as well. Excuse me (goodbye).",
+        "is_final": true
+      }
+    ]
+  },
+  "is_active": true
+}

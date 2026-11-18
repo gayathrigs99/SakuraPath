@@ -1,0 +1,90 @@
+{
+  "scenario_id": "asking_for_help_001",
+  "name": "Asking for Help",
+  "description": "Learn how to politely ask for clarification or additional explanation",
+  "level": "N4",
+  "job_type": "manufacturing",
+  "vocabulary_list": [
+    "すみません",
+    "もう一度",
+    "説明",
+    "いただく",
+    "ボタン",
+    "押す",
+    "スタート"
+  ],
+  "grammar_focus": [
+    "すみません (excuse me, polite attention-getter)",
+    "～ていただけますか (polite request for favor)",
+    "もう一度 (once more)"
+  ],
+  "cultural_notes": [
+    "Asking for help shows diligence, not weakness",
+    "Politeness is essential when requesting repetition",
+    "Clear communication prevents mistakes"
+  ],
+  "scenario_tree": {
+    "nodes": [
+      {
+        "id": "node_0_checkin",
+        "turn": 1,
+        "speaker": "supervisor",
+        "text": "はい、どうしましたか？",
+        "english": "Yes, what is it?",
+        "branches": {
+          "success": "node_1_request"
+        }
+      },
+      {
+        "id": "node_1_request",
+        "turn": 2,
+        "speaker": "worker",
+        "text": "すみません、もう一度説明していただけますか？",
+        "english": "Excuse me, could you explain it once more?",
+        "expected_intent": "help_request",
+        "branches": {
+          "success": "node_2_explanation"
+        }
+      },
+      {
+        "id": "node_2_explanation",
+        "turn": 3,
+        "speaker": "supervisor",
+        "text": "はい、このボタンを押してからスタートします。",
+        "english": "Yes, press this button and then start.",
+        "branches": {
+          "success": "node_3_detail"
+        }
+      },
+      {
+        "id": "node_3_detail",
+        "turn": 4,
+        "speaker": "supervisor",
+        "text": "まず、ここ。次に、ここ。わかりますか？",
+        "english": "First, here. Next, here. Do you understand?",
+        "branches": {
+          "success": "node_4_confirm"
+        }
+      },
+      {
+        "id": "node_4_confirm",
+        "turn": 5,
+        "speaker": "worker",
+        "expected_response": "はい、わかりました。ありがとうございます。",
+        "english": "Yes, I understand. Thank you.",
+        "branches": {
+          "success": "node_5_complete"
+        }
+      },
+      {
+        "id": "node_5_complete",
+        "turn": 6,
+        "speaker": "supervisor",
+        "text": "では、やってみてください。",
+        "english": "Then, please try it.",
+        "is_final": true
+      }
+    ]
+  },
+  "is_active": true
+}

@@ -1,0 +1,91 @@
+{
+  "scenario_id": "receiving_instructions_001",
+  "name": "Receiving Instructions",
+  "description": "Learn to respond politely when supervisor gives you a task",
+  "level": "N4",
+  "job_type": "manufacturing",
+  "vocabulary_list": [
+    "部品",
+    "検査",
+    "傷",
+    "欠陥",
+    "確認",
+    "ボタン",
+    "スタート"
+  ],
+  "grammar_focus": [
+    "～てください (polite imperative)",
+    "わかりました (understood)",
+    "どこを～すればいいですか (what should I ~)"
+  ],
+  "cultural_notes": [
+    "Always use polite form with supervisors",
+    "Confirmation shows respect and understanding",
+    "Asking clarifying questions is acceptable and encouraged"
+  ],
+  "scenario_tree": {
+    "nodes": [
+      {
+        "id": "node_1_intro",
+        "turn": 1,
+        "speaker": "supervisor",
+        "text": "この部品を検査してください。",
+        "english": "Please inspect this part.",
+        "expected_intent": "confirmation",
+        "branches": {
+          "success": "node_2_detail",
+          "clarifying_question": "node_1a_explain"
+        }
+      },
+      {
+        "id": "node_1a_explain",
+        "turn": 2,
+        "speaker": "worker",
+        "expected_response": "どこを確認すればいいですか？",
+        "english": "What should I check?",
+        "branches": {
+          "success": "node_1b_detail"
+        }
+      },
+      {
+        "id": "node_1b_detail",
+        "turn": 3,
+        "speaker": "supervisor",
+        "text": "これは自動車の部品です。傷や欠陥をチェックしてください。",
+        "english": "This is an automobile part. Please check for scratches or defects.",
+        "branches": {
+          "success": "node_2_confirm"
+        }
+      },
+      {
+        "id": "node_2_detail",
+        "turn": 2,
+        "speaker": "worker",
+        "expected_response": "はい、わかりました。",
+        "english": "Yes, understood.",
+        "branches": {
+          "success": "node_3_complete"
+        }
+      },
+      {
+        "id": "node_2_confirm",
+        "turn": 4,
+        "speaker": "worker",
+        "expected_response": "はい、わかりました。傷や欠陥をチェックします。",
+        "english": "Yes, understood. I will check for scratches or defects.",
+        "branches": {
+          "success": "node_3_complete"
+        }
+      },
+      {
+        "id": "node_3_complete",
+        "turn": 5,
+        "speaker": "supervisor",
+        "text": "ありがとうございます。お願いします。",
+        "english": "Thank you. I'm counting on you.",
+        "is_final": true
+      }
+    ]
+  },
+  "is_active": true
+}
